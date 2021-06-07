@@ -1,6 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hospital_management/maps.dart';
 import 'package:hospital_management/profile.dart';
+import 'package:hospital_management/screens/donate.dart';
+import 'package:hospital_management/screens/login-screen.dart';
+import 'package:hospital_management/screens/records_screen.dart';
 
 class Homepage extends StatefulWidget {
   Homepage({Key key}) : super(key: key);
@@ -19,20 +23,12 @@ class _HomepageState extends State<Homepage> {
         'Appointments',
       ),
     ),
-    Center(
-      child: Text(
-        'Records',
-      ),
-    ),
-    Center(
-      child: Text(
-        'donate',
-      ),
-    ),
+    Records(),
+    DonationScreen(),
     ProfileApp(),
   ];
 
-  List<BottomNavigationBarItem> navigation_bar_list = [
+  List<BottomNavigationBarItem> navgationBarList = [
     BottomNavigationBarItem(
       label: 'Home',
       icon: Icon(
@@ -85,7 +81,7 @@ class _HomepageState extends State<Homepage> {
             pageIndex = index;
           });
         },
-        items: navigation_bar_list,
+        items: navgationBarList,
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -132,19 +128,20 @@ class _StartingPageState extends State<StartingPage> {
         Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.teal,
-            /*leading: IconButton(
-              icon: Icon(
-                Icons.west,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                Homepage();
-              },
-            ),*/
             title: Text(
               '  WELCOME!!!!',
               style: TextStyle(fontStyle: FontStyle.normal),
             ),
+            actions: <Widget>[
+              IconButton(
+                  icon: Icon(Icons.logout),
+                  onPressed: () {
+                    FirebaseAuth.instance.signOut().then((onValue) {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => LoginScreen()));
+                    });
+                  })
+            ],
           ),
         ),
         Container(

@@ -1,10 +1,6 @@
-//import 'dart:html';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hospital_management/homepage.dart';
-import 'package:hospital_management/widgets/widgets.dart';
 
 class ProfileApp extends StatelessWidget {
   @override
@@ -22,15 +18,6 @@ class Profile extends StatelessWidget {
         Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.teal,
-            /*leading: IconButton(
-              icon: Icon(
-                Icons.west,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                Homepage();
-              },
-            ),*/
             title: Text(
               '  PROFILE',
               style: TextStyle(fontStyle: FontStyle.normal),
@@ -68,170 +55,127 @@ class Profile extends StatelessWidget {
                 SizedBox(
                   height: size.width * 0.1,
                 ),
-                Column(
-                  children: [
-                    TextField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            width: 2,
-                            color: Colors.pink,
+                Form(
+                  child: Container(
+                    margin: EdgeInsets.all(35),
+                    alignment: Alignment.center,
+                    child: Column(
+                      children: [
+                        TextField(
+                          decoration: InputDecoration(
+                            /*border: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                width: 2,
+                                color: Colors.pink,
+                              ),
+                              borderRadius: const BorderRadius.all(
+                                const Radius.circular(15),
+                              ),
+                            ),*/
+                            prefixIcon: Icon(
+                              Icons.person,
+                              color: Colors.teal[400],
+                              size: 35.0,
+                            ),
+                            hintText: 'Name',
+                            hintStyle: new TextStyle(
+                              fontFamily: 'Cairo',
+                              fontStyle: FontStyle.italic,
+                              fontWeight: FontWeight.w400,
+                            ),
                           ),
-                          borderRadius: const BorderRadius.all(
-                            const Radius.circular(30.0),
+                          maxLength: 20,
+                        ),
+                        TextField(
+                          decoration: InputDecoration(
+                            prefixIcon: Icon(
+                              Icons.phone,
+                              color: Colors.teal[400],
+                              size: 35.0,
+                            ),
+                            hintText: 'Phone No.',
+                            hintStyle: new TextStyle(
+                              fontFamily: 'Cairo',
+                              fontStyle: FontStyle.italic,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          maxLength: 10,
+                        ),
+                        TextField(
+                          decoration: InputDecoration(
+                            prefixIcon: Icon(
+                              Icons.calendar_today,
+                              color: Colors.teal[400],
+                              size: 35.0,
+                            ),
+                            hintText: 'Date Of Birth - dd/mm/yyyy',
+                            hintStyle: new TextStyle(
+                              fontFamily: 'Cairo',
+                              fontStyle: FontStyle.italic,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          maxLength: 10,
+                        ),
+                        TextField(
+                          decoration: InputDecoration(
+                            prefixIcon: Icon(
+                              Icons.location_on_sharp,
+                              color: Colors.teal[400],
+                              size: 35.0,
+                            ),
+                            hintText: 'Address',
+                            hintStyle: new TextStyle(
+                              fontFamily: 'Cairo',
+                              fontStyle: FontStyle.italic,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          maxLength: 100,
+                        ),
+                        TextField(
+                          decoration: InputDecoration(
+                            prefixIcon: Icon(
+                              Icons.email,
+                              color: Colors.teal[400],
+                              size: 35.0,
+                            ),
+                            hintText: 'Email ID',
+                            hintStyle: new TextStyle(
+                              fontFamily: 'Cairo',
+                              fontStyle: FontStyle.italic,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          maxLength: 20,
+                        ),
+                        SizedBox(
+                          height: 25,
+                        ),
+                        Container(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.indigo[500],
+                              elevation: 7,
+                              shadowColor: Colors.blue,
+                            ),
+                            onPressed: () {
+                              update();
+                            },
+                            child: Text("            UPDATE PROFILE          "),
+                            //textColor: Colors.white,
                           ),
                         ),
-                        prefixIcon: Icon(
-                          Icons.person,
-                          color: Colors.teal[400],
-                          size: 35.0,
+                        SizedBox(
+                          height: 30,
                         ),
-                        hintText: 'Name',
-                        hintStyle: new TextStyle(
-                          fontFamily: 'Cairo',
-                          fontStyle: FontStyle.italic,
-                          fontWeight: FontWeight.w400,
+                        SizedBox(
+                          height: 20,
                         ),
-                      ),
-                      maxLength: 20,
+                      ],
                     ),
-                    TextField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            width: 2,
-                            color: Colors.pink,
-                          ),
-                          borderRadius: const BorderRadius.all(
-                            const Radius.circular(30.0),
-                          ),
-                        ),
-                        prefixIcon: Icon(
-                          Icons.phone,
-                          color: Colors.teal[400],
-                          size: 35.0,
-                        ),
-                        hintText: 'Phone No.',
-                        hintStyle: new TextStyle(
-                          fontFamily: 'Cairo',
-                          fontStyle: FontStyle.italic,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      maxLength: 10,
-                    ),
-                    TextField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            width: 2,
-                            color: Colors.pink,
-                          ),
-                          borderRadius: const BorderRadius.all(
-                            const Radius.circular(30.0),
-                          ),
-                        ),
-                        prefixIcon: Icon(
-                          Icons.calendar_today,
-                          color: Colors.teal[400],
-                          size: 35.0,
-                        ),
-                        hintText: 'Date Of Birth - dd/mm/yyyy',
-                        hintStyle: new TextStyle(
-                          fontFamily: 'Cairo',
-                          fontStyle: FontStyle.italic,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      maxLength: 10,
-                    ),
-                    TextField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            width: 2,
-                            color: Colors.pink,
-                          ),
-                          borderRadius: const BorderRadius.all(
-                            const Radius.circular(30.0),
-                          ),
-                        ),
-                        prefixIcon: Icon(
-                          Icons.location_on_sharp,
-                          color: Colors.teal[400],
-                          size: 35.0,
-                        ),
-                        hintText: 'Address',
-                        hintStyle: new TextStyle(
-                          fontFamily: 'Cairo',
-                          fontStyle: FontStyle.italic,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      maxLength: 100,
-                    ),
-                    TextField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            width: 2,
-                            color: Colors.pink,
-                          ),
-                          borderRadius: const BorderRadius.all(
-                            const Radius.circular(30.0),
-                          ),
-                        ),
-                        prefixIcon: Icon(
-                          Icons.email,
-                          color: Colors.teal[400],
-                          size: 35.0,
-                        ),
-                        hintText: 'Email ID',
-                        hintStyle: new TextStyle(
-                          fontFamily: 'Cairo',
-                          fontStyle: FontStyle.italic,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      maxLength: 20,
-                    ),
-                    TextField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            width: 2,
-                            color: Colors.pink,
-                          ),
-                          borderRadius: const BorderRadius.all(
-                            const Radius.circular(30.0),
-                          ),
-                        ),
-                        prefixIcon: Icon(
-                          Icons.lock,
-                          color: Colors.teal[400],
-                          size: 35.0,
-                        ),
-                        hintText: 'Password',
-                        hintStyle: new TextStyle(
-                          fontFamily: 'Cairo',
-                          fontStyle: FontStyle.italic,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      obscureText: true,
-                      maxLength: 8,
-                    ),
-                    SizedBox(
-                      height: 25,
-                    ),
-                    RoundedButton(buttonName: 'Update'),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                  ],
+                  ),
                 )
               ],
             ),
@@ -240,6 +184,8 @@ class Profile extends StatelessWidget {
       ],
     );
   }
+
+  void update() {}
 }
 
 class MyHomePage extends StatefulWidget {
