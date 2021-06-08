@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -15,7 +16,7 @@ class CreateNewAccount extends StatefulWidget {
 }
 
 class _CreateNewAccountState extends State<CreateNewAccount> {
-  String _username, _email, _password;
+  String _name, _email, _password;
   var _formkey = GlobalKey<FormState>();
   bool isLoading = false;
   @override
@@ -87,7 +88,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                                 keyboardType: TextInputType.text,
                                 onChanged: (item) {
                                   setState(() {
-                                    _username = item;
+                                    _name = item;
                                   });
                                 },
                                 decoration: InputDecoration(
@@ -103,7 +104,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                                     color: Colors.white,
                                     size: 30,
                                   ),
-                                  hintText: "Enter Username",
+                                  hintText: "Enter name",
                                   hintStyle: TextStyle(
                                     fontSize: 20,
                                     color: Colors.white,
@@ -262,6 +263,26 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
           isLoading = false;
         });
         Fluttertoast.showToast(msg: "Registration Successful");
+
+        void create() async {
+          try {
+            await FirebaseFirestore.instance
+                .collection('app_users')
+                .doc(_email)
+                .set({
+              "name": _name,
+              "phone": "",
+              "date": "",
+              "address": "",
+              "email": _email
+            });
+            Fluttertoast.showToast(msg: "successfully created");
+          } catch (e) {
+            Fluttertoast.showToast(msg: "error occured");
+          }
+        }
+
+        create();
         Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(builder: (_) => Homepage()),

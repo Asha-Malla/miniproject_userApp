@@ -25,7 +25,7 @@ class _HomepageState extends State<Homepage> {
     ),
     Records(),
     DonationScreen(),
-    ProfileApp(),
+    Profile(),
   ];
 
   List<BottomNavigationBarItem> navgationBarList = [

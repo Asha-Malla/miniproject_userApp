@@ -1,5 +1,7 @@
 //import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class CrU extends StatefulWidget {
   //const CrU({ Key? key }) : super(key: key);
@@ -9,6 +11,8 @@ class CrU extends StatefulWidget {
 }
 
 class _CrUState extends State<CrU> {
+  String _name, _phone, _date, _bloodtype, _address, _email;
+  var _formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -36,12 +40,18 @@ class _CrUState extends State<CrU> {
                       fontWeight: FontWeight.w900),
                 ),
                 Form(
+                  key: _formkey,
                   child: Container(
                     margin: EdgeInsets.all(35),
                     alignment: Alignment.center,
                     child: Column(
                       children: [
-                        TextField(
+                        TextFormField(
+                          onChanged: (item) {
+                            setState(() {
+                              _name = item;
+                            });
+                          },
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -66,7 +76,12 @@ class _CrUState extends State<CrU> {
                           ),
                           maxLength: 20,
                         ),
-                        TextField(
+                        TextFormField(
+                          onChanged: (item) {
+                            setState(() {
+                              _phone = item;
+                            });
+                          },
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -91,7 +106,12 @@ class _CrUState extends State<CrU> {
                           ),
                           maxLength: 10,
                         ),
-                        TextField(
+                        TextFormField(
+                          onChanged: (item) {
+                            setState(() {
+                              _date = item;
+                            });
+                          },
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -116,7 +136,12 @@ class _CrUState extends State<CrU> {
                           ),
                           maxLength: 10,
                         ),
-                        TextField(
+                        TextFormField(
+                          onChanged: (item) {
+                            setState(() {
+                              _bloodtype = item;
+                            });
+                          },
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -141,7 +166,12 @@ class _CrUState extends State<CrU> {
                           ),
                           maxLength: 100,
                         ),
-                        TextField(
+                        TextFormField(
+                          onChanged: (item) {
+                            setState(() {
+                              _address = item;
+                            });
+                          },
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -166,7 +196,12 @@ class _CrUState extends State<CrU> {
                           ),
                           maxLength: 100,
                         ),
-                        TextField(
+                        TextFormField(
+                          onChanged: (item) {
+                            setState(() {
+                              _email = item;
+                            });
+                          },
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -198,9 +233,24 @@ class _CrUState extends State<CrU> {
                           children: [
                             Container(
                               child: ElevatedButton(
-                                //color: Colors.teal,
-                                onPressed: () {
-                                  //update();
+                                onPressed: () async {
+                                  try {
+                                    await FirebaseFirestore.instance
+                                        .collection('blood_donation')
+                                        .doc(_email)
+                                        .set({
+                                      "name": _name,
+                                      "phone": _phone,
+                                      "date": _date,
+                                      "bloodtype": _bloodtype,
+                                      "address": _address,
+                                    });
+                                    Fluttertoast.showToast(
+                                        msg: "successfully created");
+                                  } catch (e) {
+                                    Fluttertoast.showToast(
+                                        msg: "error occured");
+                                  }
                                 },
                                 style: ElevatedButton.styleFrom(
                                   primary: Colors.indigo[500],
@@ -218,9 +268,24 @@ class _CrUState extends State<CrU> {
                             ),
                             Container(
                               child: ElevatedButton(
-                                //color: Colors.teal,
-                                onPressed: () {
-                                  //update();
+                                onPressed: () async {
+                                  try {
+                                    await FirebaseFirestore.instance
+                                        .collection("blood_donation")
+                                        .doc(_email)
+                                        .update({
+                                      "name": _name,
+                                      "phone": _phone,
+                                      "date": _date,
+                                      "bloodtype": _bloodtype,
+                                      "address": _address,
+                                    });
+                                    Fluttertoast.showToast(
+                                        msg: "successfully updated");
+                                  } catch (e) {
+                                    Fluttertoast.showToast(
+                                        msg: "email not found");
+                                  }
                                 },
                                 style: ElevatedButton.styleFrom(
                                   primary: Colors.indigo[500],

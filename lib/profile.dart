@@ -1,15 +1,23 @@
+//import 'dart:html';
 import 'dart:ui';
-
+//import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
-class ProfileApp extends StatelessWidget {
+class Profile extends StatefulWidget {
+  //const Profile({ Key? key }) : super(key: key);
+
   @override
-  Widget build(BuildContext context) {
-    return new MaterialApp(home: Profile());
-  }
+  _ProfileState createState() => _ProfileState();
 }
 
-class Profile extends StatelessWidget {
+class _ProfileState extends State<Profile> {
+  String _name, _phone, _date, _address;
+  String _email = FirebaseAuth.instance.currentUser.email;
+
+  var _formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -56,12 +64,18 @@ class Profile extends StatelessWidget {
                   height: size.width * 0.1,
                 ),
                 Form(
+                  key: _formkey,
                   child: Container(
                     margin: EdgeInsets.all(35),
                     alignment: Alignment.center,
                     child: Column(
                       children: [
-                        TextField(
+                        TextFormField(
+                          onChanged: (item) {
+                            setState(() {
+                              _name = item;
+                            });
+                          },
                           decoration: InputDecoration(
                             /*border: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -86,7 +100,12 @@ class Profile extends StatelessWidget {
                           ),
                           maxLength: 20,
                         ),
-                        TextField(
+                        TextFormField(
+                          onChanged: (item) {
+                            setState(() {
+                              _phone = item;
+                            });
+                          },
                           decoration: InputDecoration(
                             prefixIcon: Icon(
                               Icons.phone,
@@ -102,7 +121,13 @@ class Profile extends StatelessWidget {
                           ),
                           maxLength: 10,
                         ),
-                        TextField(
+                        TextFormField(
+                          onChanged: (item) {
+                            setState(() {
+                              _date = item;
+                            });
+                          },
+                          keyboardType: TextInputType.text,
                           decoration: InputDecoration(
                             prefixIcon: Icon(
                               Icons.calendar_today,
@@ -118,7 +143,12 @@ class Profile extends StatelessWidget {
                           ),
                           maxLength: 10,
                         ),
-                        TextField(
+                        TextFormField(
+                          onChanged: (item) {
+                            setState(() {
+                              _address = item;
+                            });
+                          },
                           decoration: InputDecoration(
                             prefixIcon: Icon(
                               Icons.location_on_sharp,
@@ -134,25 +164,6 @@ class Profile extends StatelessWidget {
                           ),
                           maxLength: 100,
                         ),
-                        TextField(
-                          decoration: InputDecoration(
-                            prefixIcon: Icon(
-                              Icons.email,
-                              color: Colors.teal[400],
-                              size: 35.0,
-                            ),
-                            hintText: 'Email ID',
-                            hintStyle: new TextStyle(
-                              fontFamily: 'Cairo',
-                              fontStyle: FontStyle.italic,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          maxLength: 20,
-                        ),
-                        SizedBox(
-                          height: 25,
-                        ),
                         Container(
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
@@ -160,8 +171,31 @@ class Profile extends StatelessWidget {
                               elevation: 7,
                               shadowColor: Colors.blue,
                             ),
-                            onPressed: () {
-                              update();
+                            onPressed: () async {
+                              try {
+                                await FirebaseFirestore.instance
+                                    .collection("app_users")
+                                    .doc(_email)
+                                    .update({
+                                  "name": _name,
+                                  "phone": _phone,
+                                  "date": _date,
+                                  "address": _address,
+                                });
+                                Fluttertoast.showToast(
+                                    msg: "successfully updated");
+                              } catch (e) {
+                                print(e);
+                                Text("$e");
+                                /*Fluttertoast.showToast(
+                                    msg: '$e' +
+                                        " $_email " +
+                                        "$_name " +
+                                        "$_phone " +
+                                        "$_address " +
+                                        "$_date ");*/
+                                Fluttertoast.showToast(msg: "email not found");
+                              }
                             },
                             child: Text("            UPDATE PROFILE          "),
                             //textColor: Colors.white,
@@ -184,8 +218,6 @@ class Profile extends StatelessWidget {
       ],
     );
   }
-
-  void update() {}
 }
 
 class MyHomePage extends StatefulWidget {
