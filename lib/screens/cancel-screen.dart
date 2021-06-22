@@ -2,15 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class DDonor extends StatefulWidget {
-  //const DDonor({ Key? key }) : super(key: key);
+class CancelScreen extends StatefulWidget {
+  //const CancelScreen({ Key? key }) : super(key: key);
 
   @override
-  _DDonorState createState() => _DDonorState();
+  _CancelScreenState createState() => _CancelScreenState();
 }
 
-class _DDonorState extends State<DDonor> {
-  String _email;
+class _CancelScreenState extends State<CancelScreen> {
+  String _app_id;
   var _formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class _DDonorState extends State<DDonor> {
                   alignment: Alignment.center,
                   margin: EdgeInsets.all(35),
                   child: Text(
-                    "DELETE ACCOUNT",
+                    "DELETE APPOINTMENT",
                     style: TextStyle(
                       //shadows: ,
                       color: Colors.teal,
@@ -55,7 +55,7 @@ class _DDonorState extends State<DDonor> {
                   child: TextFormField(
                     onChanged: (item) {
                       setState(() {
-                        _email = item;
+                        _app_id = item;
                       });
                     },
                     decoration: InputDecoration(
@@ -69,11 +69,11 @@ class _DDonorState extends State<DDonor> {
                         ),
                       ),
                       prefixIcon: Icon(
-                        Icons.email,
+                        Icons.receipt,
                         color: Colors.teal[400],
                         size: 35.0,
                       ),
-                      hintText: 'Email ID',
+                      hintText: 'Appointment ID',
                       hintStyle: new TextStyle(
                         fontFamily: 'Cairo',
                         color: Colors.teal,
@@ -100,8 +100,8 @@ class _DDonorState extends State<DDonor> {
                     onPressed: () async {
                       try {
                         await FirebaseFirestore.instance
-                            .collection("blood_donation")
-                            .doc(_email)
+                            .collection("appointments")
+                            .doc(_app_id)
                             .delete();
                         Fluttertoast.showToast(msg: "successfully deleted");
                       } catch (e) {

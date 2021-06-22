@@ -23,6 +23,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
         appBar: AppBar(
           title: Text('  Map'),
+          elevation: 10,
+          shadowColor: Colors.teal,
           backgroundColor: Colors.teal,
         ),
         body: new FlutterMap(

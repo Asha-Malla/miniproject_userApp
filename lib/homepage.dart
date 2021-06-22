@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hospital_management/maps.dart';
 import 'package:hospital_management/profile.dart';
+import 'package:hospital_management/screens/appointment-screen.dart';
 import 'package:hospital_management/screens/donate.dart';
 import 'package:hospital_management/screens/login-screen.dart';
 import 'package:hospital_management/screens/records_screen.dart';
@@ -18,11 +19,7 @@ class _HomepageState extends State<Homepage> {
   static List<Widget> _widgetOptions = <Widget>[
     StartingPage(),
     Map(),
-    Center(
-      child: Text(
-        'Appointments',
-      ),
-    ),
+    AppointmentScreen(),
     Records(),
     DonationScreen(),
     Profile(),
@@ -132,6 +129,8 @@ class _StartingPageState extends State<StartingPage> {
               '  WELCOME!!!!',
               style: TextStyle(fontStyle: FontStyle.normal),
             ),
+            elevation: 10,
+            shadowColor: Colors.teal,
             actions: <Widget>[
               IconButton(
                   icon: Icon(Icons.logout),

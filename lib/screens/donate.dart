@@ -10,16 +10,19 @@ class DonationScreen extends StatelessWidget {
       Scaffold(
         appBar: AppBar(
           title: Text("Blood donation"),
+          elevation: 10,
+          shadowColor: Colors.teal,
           backgroundColor: Colors.teal,
         ),
+        backgroundColor: Color(0xFFF2F3F8),
       ),
       Center(
         child: Container(
-          padding: new EdgeInsets.all(10.0),
-          child: Column(
+          padding: new EdgeInsets.all(15.0),
+          child: ListView(
             children: [
               SizedBox(
-                height: 125,
+                height: 70,
               ),
               Card(
                 shape: RoundedRectangleBorder(
@@ -28,44 +31,47 @@ class DonationScreen extends StatelessWidget {
                 color: Colors.white,
                 elevation: 10,
                 shadowColor: Colors.teal,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    const ListTile(
-                      title: Text(
-                        'Create or Update Donors',
-                        style: TextStyle(
-                            fontSize: 29.5,
-                            color: Colors.teal,
-                            fontWeight: FontWeight.w900),
-                      ),
-                      subtitle: Text(
-                          'Join blood donation and donate blood to save life.',
+                child: Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      const ListTile(
+                        title: Text(
+                          'Create or Update Donor Profile',
                           style: TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.w900,
-                          )),
-                    ),
-                    IconButton(
-                      icon: Icon(
-                        Icons.arrow_forward,
-                        color: Colors.teal,
-                        size: 30,
+                              fontSize: 29.5,
+                              color: Colors.teal,
+                              fontWeight: FontWeight.w900),
+                        ),
+                        subtitle: Text(
+                            'Join blood donation and donate blood to save life.',
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.w900,
+                            )),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                            context, MaterialPageRoute(builder: (_) => CrU()));
-                        //CrU();
-                        //Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_)=>CrU())), (route) => false)
-                        /*Navigator.push(
+                      IconButton(
+                        icon: Icon(
+                          Icons.arrow_forward,
+                          color: Colors.teal,
+                          size: 30,
+                        ),
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (_) => CrU()));
+                          //CrU();
+                          //Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_)=>CrU())), (route) => false)
+                          /*Navigator.push(
                             context, MaterialPageRoute(builder: (_) => CrU()));*/
-                      },
-                    ),
-                  ],
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(
-                height: 50,
+                height: 20,
               ),
               Card(
                 shape: RoundedRectangleBorder(
@@ -74,42 +80,46 @@ class DonationScreen extends StatelessWidget {
                 color: Colors.white,
                 elevation: 10,
                 shadowColor: Colors.teal,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    const ListTile(
-                      title: Center(
-                        child: Text(
-                          'Delete Donor',
-                          style: TextStyle(
-                              fontSize: 30.0,
-                              color: Colors.teal,
-                              fontWeight: FontWeight.w900),
+                child: Padding(
+                  padding: EdgeInsets.all(15),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      const ListTile(
+                        title: Center(
+                          child: Text(
+                            'Delete Donor',
+                            style: TextStyle(
+                                fontSize: 30.0,
+                                color: Colors.teal,
+                                fontWeight: FontWeight.w900),
+                          ),
                         ),
+                        subtitle:
+                            Text('Don\'t want to donate? Cancel any time.',
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.w900,
+                                )),
                       ),
-                      subtitle: Text('Don\'t want to donate? Cancel any time.',
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.w900,
-                          )),
-                    ),
-                    IconButton(
-                      icon: Icon(
-                        Icons.arrow_forward,
-                        color: Colors.teal,
-                        size: 30,
+                      IconButton(
+                        icon: Icon(
+                          Icons.arrow_forward,
+                          color: Colors.teal,
+                          size: 30,
+                        ),
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (_) => DDonor()));
+                          // DDonor();
+                        },
                       ),
-                      onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => DDonor()));
-                        // DDonor();
-                      },
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               SizedBox(
-                height: 50,
+                height: 20,
               ),
               Card(
                 shape: RoundedRectangleBorder(
@@ -118,38 +128,41 @@ class DonationScreen extends StatelessWidget {
                 color: Colors.white,
                 elevation: 10,
                 shadowColor: Colors.teal,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    const ListTile(
-                      title: Center(
-                        child: Text(
-                          'Find Donars',
-                          style: TextStyle(
-                              fontSize: 30.0,
-                              color: Colors.teal,
-                              fontWeight: FontWeight.w900),
+                child: Padding(
+                  padding: EdgeInsets.all(15),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      const ListTile(
+                        title: Center(
+                          child: Text(
+                            'Find Donors',
+                            style: TextStyle(
+                                fontSize: 30.0,
+                                color: Colors.teal,
+                                fontWeight: FontWeight.w900),
+                          ),
                         ),
+                        subtitle: Text('Find suitable blood type donors here.',
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.w900,
+                            )),
                       ),
-                      subtitle: Text('Find suitable blood type donors here.',
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.w900,
-                          )),
-                    ),
-                    IconButton(
-                      icon: Icon(
-                        Icons.arrow_forward,
-                        color: Colors.teal,
-                        size: 30,
+                      IconButton(
+                        icon: Icon(
+                          Icons.arrow_forward,
+                          color: Colors.teal,
+                          size: 30,
+                        ),
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (_) => FDonor()));
+                          //FDonor();
+                        },
                       ),
-                      onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => FDonor()));
-                        //FDonor();
-                      },
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],
