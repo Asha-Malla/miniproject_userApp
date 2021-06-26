@@ -9,6 +9,7 @@
 
   CrUdonor(this._name, this._phone, this._date, this._address, this._bloodtype,
       this._email_id);
+  //
 
   CrUdonor.map(dynamic obj) {
     this._name = obj['name'];
