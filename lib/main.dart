@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hospital_management/screens/splash_screen.dart';
 
 void main() async {
+  //intializing firebase
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp();
