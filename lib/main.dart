@@ -15,9 +15,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false,  //to remove debug banner
       title: "Hospital Management App",
-      home: SplashScreen(), //Container(),
+      home: SplashScreen(), 
     );
   }
 }
