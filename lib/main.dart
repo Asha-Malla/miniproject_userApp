@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,  //to remove debug banner
       title: "Hospital Management App",
-      home: SplashScreen(), 
+      home: SplashScreen(), // redirects to splash screen(first page icon)
     );
   }
 }
