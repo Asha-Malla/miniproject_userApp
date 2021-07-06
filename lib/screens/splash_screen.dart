@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 5), () {
+    Timer(Duration(seconds: 5), () {           //to show 5 sec of splash screen
       FirebaseAuth.instance.authStateChanges().listen((value) {
         if (value == null) {
           //not logged in
