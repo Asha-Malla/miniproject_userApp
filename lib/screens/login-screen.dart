@@ -14,19 +14,19 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   String _email, _password;
-  var _formkey = GlobalKey<FormState>();
-  bool isLoading = false;
+  var _formkey = GlobalKey<FormState>();  //form key
+  bool isLoading = false;           
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         BackgroundImage(
-          image: 'assets/login_bg.png',
+          image: 'assets/login_bg.png',   //background image
         ),
         Scaffold(
           backgroundColor: Colors.transparent,
           body: isLoading
-              ? Center(child: CircularProgressIndicator())
+              ? Center(child: CircularProgressIndicator())       // progress indicator
               : Container(
                   alignment: Alignment.center,
                   child: Column(
@@ -34,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Flexible(
                         child: Center(
                           child: Text(
-                            'HOSPITAL MANAGEMENT',
+                            'HOSPITAL MANAGEMENT',              //main heading
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 30,
