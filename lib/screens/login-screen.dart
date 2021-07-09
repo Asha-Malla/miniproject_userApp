@@ -54,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 autofocus: true,
                                 keyboardType: TextInputType.emailAddress,
                                 validator: (item) {
-                                  return item.contains("@")
+                                  return item.contains("@")    //email validation
                                       ? null
                                       : "Enter valid Email";
                                 },
@@ -93,7 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 keyboardType: TextInputType.text,
                                 validator: (item) {
                                   print("pasword!!!!!!!");
-                                  return item.length >= 6
+                                  return item.length >= 6                        //password validation
                                       ? null
                                       : "Password must be 6 characters";
                                 },
@@ -133,8 +133,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                   },
                                   style: ElevatedButton.styleFrom(
                                     primary: Colors.indigo[500],
-                                    //elevation: 7,
-                                    //shadowColor: Colors.blue,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10),
                                     ),
