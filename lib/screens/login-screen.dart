@@ -155,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (_) => ForgotPassword()));
+                                    builder: (_) => ForgotPassword()));  //redirect to forgot password screen
                           },
                           child: Text(
                             'Forgot Password',
@@ -171,7 +171,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (_) => CreateNewAccount(),
+                              builder: (_) => CreateNewAccount(),  //redirect to create account screen
                             ),
                           );
                         },
