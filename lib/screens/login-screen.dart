@@ -198,27 +198,27 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void login() {
+  void login() {                                //login logic
     if (_formkey.currentState.validate()) {
       setState(() {
         isLoading = true;
       });
       FirebaseAuth.instance
           .signInWithEmailAndPassword(email: _email, password: _password)
-          .then((user) {
+          .then((user) {                      //Auth using email and password
         setState(() {
           isLoading = false;
         });
-        Fluttertoast.showToast(msg: "Login Successful");
+        Fluttertoast.showToast(msg: "Login Successful");    //Auth successful
         Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (_) => Homepage()),
+            MaterialPageRoute(builder: (_) => Homepage()),   //Redirecting to Home screen
             (Route<dynamic> route) => false);
       }).catchError((onError) {
         setState(() {
-          isLoading = false;
+          isLoading = false;  //Error occured
         });
-        Fluttertoast.showToast(msg: "error " + onError.toString());
+        Fluttertoast.showToast(msg: "error " + onError.toString());   //Error message
       });
     }
   }
