@@ -24,7 +24,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
     Size size = MediaQuery.of(context).size;
     return Stack(
       children: [
-        BackgroundImage(image: 'assets/login_bg.png'),
+        BackgroundImage(image: 'assets/login_bg.png'),    //background image
         Scaffold(
           backgroundColor: Colors.transparent,
           body: isLoading
@@ -41,7 +41,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                             child: ClipOval(
                               child: BackdropFilter(
                                 filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
-                                child: CircleAvatar(
+                                child: CircleAvatar(                                 //User Avathar icon
                                   radius: size.width * 0.14,
                                   backgroundColor: Colors.grey[400].withOpacity(
                                     0.4,
