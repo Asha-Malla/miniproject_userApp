@@ -117,7 +117,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                               ),
                               TextFormField(
                                 keyboardType: TextInputType.emailAddress,
-                                validator: (item) {
+                                validator: (item) {                            //email validation logic
                                   return item.contains("@")
                                       ? null
                                       : "Enter valid Email";
@@ -154,7 +154,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                               TextFormField(
                                 obscureText: true,
                                 keyboardType: TextInputType.text,
-                                validator: (item) {
+                                validator: (item) {                  //password validation logic
                                   return item.length >= 6
                                       ? null
                                       : "Password must be 6 characters";
@@ -224,8 +224,8 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                                     onTap: () {
                                       Navigator.push(
                                           context,
-                                          MaterialPageRoute(
-                                              builder: (_) => LoginScreen()));
+                                          MaterialPageRoute(                        
+                                              builder: (_) => LoginScreen()));            //redirect to login screen
                                     },
                                     child: Text(
                                       'Login',
