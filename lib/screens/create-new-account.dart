@@ -24,7 +24,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
     Size size = MediaQuery.of(context).size;
     return Stack(
       children: [
-        BackgroundImage(image: 'assets/login_bg.png'),    //background image
+        BackgroundImage(image: 'assets/login_bg.png'),    // background image
         Scaffold(
           backgroundColor: Colors.transparent,
           body: isLoading
@@ -41,7 +41,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                             child: ClipOval(
                               child: BackdropFilter(
                                 filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
-                                child: CircleAvatar(                                 //User Avathar icon
+                                child: CircleAvatar(                                 // User Avathar icon
                                   radius: size.width * 0.14,
                                   backgroundColor: Colors.grey[400].withOpacity(
                                     0.4,
@@ -117,7 +117,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                               ),
                               TextFormField(
                                 keyboardType: TextInputType.emailAddress,
-                                validator: (item) {                            //email validation logic
+                                validator: (item) {                            // email validation logic
                                   return item.contains("@")
                                       ? null
                                       : "Enter valid Email";
@@ -154,7 +154,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                               TextFormField(
                                 obscureText: true,
                                 keyboardType: TextInputType.text,
-                                validator: (item) {                  //password validation logic
+                                validator: (item) {                  // password validation logic
                                   return item.length >= 6
                                       ? null
                                       : "Password must be 6 characters";
@@ -225,7 +225,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(                        
-                                              builder: (_) => LoginScreen()));            //redirect to login screen
+                                              builder: (_) => LoginScreen()));            // redirect to login screen
                                     },
                                     child: Text(
                                       'Login',
@@ -257,16 +257,16 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
         isLoading = true;
       });
       FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: _email, password: _password)
+          .createUserWithEmailAndPassword(email: _email, password: _password)   // creating account with email andpassword
           .then((user) {
         setState(() {
           isLoading = false;
-        });
+        });                                                          // account created successfully
         Fluttertoast.showToast(msg: "Registration Successful");
 
         void create() async {
           try {
-            await FirebaseFirestore.instance
+            await FirebaseFirestore.instance                                               // storing user details in firestore
                 .collection('app_users')
                 .doc(_email)
                 .set({
@@ -285,11 +285,11 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
         create();
         Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (_) => Homepage()),
+            MaterialPageRoute(builder: (_) => Homepage()),                    // redirect to home page after successful account creation
             (Route<dynamic> route) => false);
       }).catchError((onError) {
         setState(() {
-          isLoading = false;
+          isLoading = false;                                              // error occured
         });
         Fluttertoast.showToast(msg: "error " + onError.toString());
       });
