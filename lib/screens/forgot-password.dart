@@ -112,7 +112,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       ],
     );
   }
-
+//reset password logic
   void resetPassword(BuildContext context) async {
     if (forgot.text.length == 0 || !forgot.text.contains("@")) {
       Fluttertoast.showToast(msg: "Enter valid email");
